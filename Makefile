@@ -1,23 +1,21 @@
-all: llDemo
+all: bstMain
 
 CFLAGS=-g -O3
 
-# Symbols helpful for understanding the productions
-#   $@ is the production's target
-#   $^ are the production's prerequisites
+# $@ target
+# $^ prerequisites
 
-llDemo: llist.o llDemo.o
+bstMain: bst.o bstMain.o
 	cc -o $@ $^
 
-llist.o: llist.c llist.h
-	cc -c $(CFLAGS) llist.c
+bst.o: bst.c bst.h
+	cc -c $(CFLAGS) bst.c
 
-llDemo.o: llDemo.c llist.h
-	cc -c $(CFLAGS) llDemo.c
+bstMain.o: bstMain.c bst.h
+	cc -c $(CFLAGS) bstMain.c
 
 clean:
-	rm -f *.o llDemo
+	rm -f *.o bstMain
 
-demo: llDemo
-	(echo first; echo "second line"; echo "third and last") | ./llDemo
-
+demo: bstMain
+	./bstMain 
